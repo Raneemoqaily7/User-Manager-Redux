@@ -1,0 +1,6 @@
+export const MAKE_REQUEST = "MAKE_REQUEST"
+export const GET_USER_LIST ="GET_USER_LIST"
+export const FAIL_REQUEST = "FAIL_REQUEST "
+export const DELETE_USER ="DELETE_USER"
+export const SELECTED_ITEMS="SELECTED_ITEMS"
+export const DESELECT_ITEM = 'DESELECT_ITEM'
