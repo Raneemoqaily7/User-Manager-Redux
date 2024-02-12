@@ -1,4 +1,4 @@
-import { FAIL_REQUEST, GET_USER_LIST , MAKE_REQUEST ,DELETE_USER,DESELECT_ITEM,SELECTED_ITEMS} from "./ActionType"
+import { FAIL_REQUEST, GET_USER_LIST , MAKE_REQUEST ,DELETE_USER,DESELECT_ITEM,SELECTED_ITEMS,HIDE_USER_MODAL,SHOW_USER_MODAL} from "./ActionType"
 
 const initialstate = {
     loading: true,
@@ -6,7 +6,7 @@ const initialstate = {
     userObj: {},
     errMessage: "",
     selectedIds: [],
-    showModal:false
+    isModalVisible:false
 
 
 
@@ -62,6 +62,20 @@ export const Reducer = (state = initialstate, action) => {
                 ...state,
                
             };
+
+            case SHOW_USER_MODAL:
+                return{
+                    ...state,
+                    isModalVisible:true
+
+
+                }
+
+            case HIDE_USER_MODAL:
+                return{
+                    ...state,
+                    isModalVisible:false
+                }
 
 
            

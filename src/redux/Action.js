@@ -1,5 +1,6 @@
 import axios from "axios"
-import { MAKE_REQUEST, FAIL_REQUEST, GET_USER_LIST ,DELETE_USER ,DESELECT_ITEM,SELECTED_ITEMS } from "./ActionType"
+import { MAKE_REQUEST, FAIL_REQUEST, GET_USER_LIST ,DELETE_USER ,DESELECT_ITEM,SELECTED_ITEMS 
+    ,HIDE_USER_MODAL,SHOW_USER_MODAL} from "./ActionType"
 
 export const makeRequest = () => {
     return {
@@ -41,6 +42,22 @@ export const deleteUser =(id)=>{
         payload:id
     }
 }
+
+
+export const showUserModal =()=>{
+    return{
+        type:SHOW_USER_MODAL
+    }
+}
+
+export const hideUserModal=()=>{
+    return{
+        type:HIDE_USER_MODAL
+    }
+}
+
+
+
 
 
 

@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import { connect } from 'react-redux';
-import { fetchUserList, removeUser, selectItem, unSelectedItems } from "../redux/Action"
+import { fetchUserList, removeUser, selectItem, unSelectedItems ,hideUserModal,showUserModal} from "../redux/Action"
 import UserSpinner from './Spinner';
 import CustomPagination from './Pagination';
 import "./Pagination/pagination.css"
-import Button from 'react-bootstrap/Button';
+import Button  from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal'
 import DeleteButton from "./DeleteButton"
-// import AddUser  from "./AddUser"
+import AddUser from "./AddUser"
 
 
 
@@ -57,7 +58,28 @@ function UserListing(props) {
             props.user.errMessage ? <div><h2>{props.user.errMessage}</h2></div> :
                <>
                     <div className="d-flex mb-3 ">
-                        {/* <div className="mx-4"><AddUser  /></div> */}
+                        <div className="mx-4">
+                        
+                        <Button variant="outline-success" onClick={props.showuserModal}>Add User</Button>
+ {/* Add User modal */}
+ <Modal show={props.user.isModalVisible} onHide={props.hideuserModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add User</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          
+          <AddUser />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={props.hideuserModal}>
+            Close
+          </Button>
+          {/* Additional buttons or actions */}
+        </Modal.Footer>
+      </Modal>
+
+
+                        </div>
                         <div  className="mx-4">  <DeleteButton/> </div>
                         
                         <div></div> 
@@ -134,6 +156,8 @@ const mapDispatchToUser = (dispatch) => {
         removeuser: (ids) => dispatch(removeUser(ids)),
         selectItemm: (id) => dispatch(selectItem(id)),
         deselectItemm: (id) => dispatch(unSelectedItems(id)),
+        showuserModal:()=>dispatch(showUserModal()),
+        hideuserModal:()=>dispatch(hideUserModal())
 
 
     }

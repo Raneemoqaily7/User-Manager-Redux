@@ -4,4 +4,5 @@ export const FAIL_REQUEST = "FAIL_REQUEST "
 export const SELECTED_ITEMS="SELECTED_ITEMS"
 export const DESELECT_ITEM = 'DESELECT_ITEM'
 export const DELETE_USER ="DELETE_USER"
-export const ADD_USER = "ADD_USER"
+export const SHOW_USER_MODAL = "SHOW_USER_MODAL"
+export const HIDE_USER_MODAL ="HIDE_USER_MODAL"
