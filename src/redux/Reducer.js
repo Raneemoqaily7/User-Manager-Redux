@@ -5,7 +5,9 @@ const initialstate = {
     userlist: [],
     userObj: {},
     errMessage: "",
-    selectedIds: []
+    selectedIds: [],
+    showModal:false
+
 
 
 }
@@ -56,10 +58,13 @@ export const Reducer = (state = initialstate, action) => {
             case DELETE_USER :
             
             return {
-                loading:true,
+                loading:false,
                 ...state,
-                selectedIds: state.selectedIds.filter(id => !action.payload.includes(id))
+               
             };
+
+
+           
         default: return state
     }
 

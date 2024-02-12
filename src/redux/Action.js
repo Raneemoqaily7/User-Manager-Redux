@@ -1,5 +1,5 @@
 import axios from "axios"
-import { MAKE_REQUEST, FAIL_REQUEST, GET_USER_LIST ,DELETE_USER ,DESELECT_ITEM,SELECTED_ITEMS} from "./ActionType"
+import { MAKE_REQUEST, FAIL_REQUEST, GET_USER_LIST ,DELETE_USER ,DESELECT_ITEM,SELECTED_ITEMS } from "./ActionType"
 
 export const makeRequest = () => {
     return {
@@ -42,6 +42,8 @@ export const deleteUser =(id)=>{
     }
 }
 
+
+
 export const fetchUserList=()=>{
     return(dispatch)=>{
 
@@ -73,3 +75,6 @@ export const removeUser=(ids)=>{
            
     
 }}
+
+// update_user_status/<int:id></int:id>
+

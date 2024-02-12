@@ -2,13 +2,21 @@
     display: flex;
     justify-content: center;
     margin-top: 20px; /* Adjust margin top as needed */
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f9fa; /* Add background color as per your design */
+    padding: 10px;
+    z-index: 1000; 
+}
     
-  }
+  /*  */
   
   /* CustomPagination.css */
 
 
-  
+/*   
   .pagination .page-link {
     color: #000;
     background-color: transparent;
@@ -21,7 +29,7 @@
     font-size: 18px;
     margin: 0 5px;
   
-  }
+  } */
   
   .pagination .page-link:hover {
     background-color: #000;

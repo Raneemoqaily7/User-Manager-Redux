@@ -21,7 +21,8 @@ function App() {
       </BrowserRouter>
      
      
-     <ToastContainer />
+     <ToastContainer position="bottom-right" closeOnClick
+rtl={true}/>
     </div>
     </Provider>
   );
