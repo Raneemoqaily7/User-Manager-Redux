@@ -1,6 +1,6 @@
 import axios from "axios"
 import { MAKE_REQUEST, FAIL_REQUEST, GET_USER_LIST ,DELETE_USER ,DESELECT_ITEM,SELECTED_ITEMS 
-    ,HIDE_USER_MODAL,SHOW_USER_MODAL} from "./ActionType"
+    ,HIDE_USER_MODAL,SHOW_USER_MODAL ,ADD_USER} from "./ActionType"
 
 export const makeRequest = () => {
     return {
@@ -56,6 +56,12 @@ export const hideUserModal=()=>{
     }
 }
 
+export const addUser=()=>{
+    return{
+        type:ADD_USER
+    }
+}
+
 
 
 
@@ -93,5 +99,15 @@ export const removeUser=(ids)=>{
     
 }}
 
-// update_user_status/<int:id></int:id>
+// add_user/
+export const addNewUser =(data)=>{
+    return(dispatch)=>{
+        dispatch(makeRequest())
+        axios.post("http://127.0.0.1:8000/api/add_user/" ,data).then(res=>{
+            dispatch(addUser())
+        })
+        .catch(err=>{dispatch(failRequest(err))})
+       
+    }
+}
 

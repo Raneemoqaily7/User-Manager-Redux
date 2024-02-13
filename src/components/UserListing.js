@@ -71,10 +71,7 @@ function UserListing(props) {
           <AddUser />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={props.hideuserModal}>
-            Close
-          </Button>
-          {/* Additional buttons or actions */}
+        
         </Modal.Footer>
       </Modal>
 
@@ -92,6 +89,7 @@ function UserListing(props) {
                                 <th>User Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
+                                <th>Gender</th>
                                 <th>DOB</th>
 
                             </tr>
@@ -110,6 +108,7 @@ function UserListing(props) {
                                     <td>{item.username}</td>
                                     <td>{item.email}</td>
                                     <td>{item.phone}</td>
+                                    <td>{item.gender}</td>
                                     <td>{item.Date_Of_Birth}</td>
                                    
                                 </tr>
