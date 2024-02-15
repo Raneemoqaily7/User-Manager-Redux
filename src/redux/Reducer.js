@@ -1,4 +1,5 @@
-import { FAIL_REQUEST, GET_USER_LIST , MAKE_REQUEST ,DELETE_USER,DESELECT_ITEM,SELECTED_ITEMS,HIDE_USER_MODAL,SHOW_USER_MODAL, ADD_USER} from "./ActionType"
+import { FAIL_REQUEST, GET_USER_LIST , MAKE_REQUEST ,DELETE_USER,DESELECT_ITEM,SELECTED_ITEMS,
+    HIDE_USER_MODAL,SHOW_USER_MODAL, ADD_USER ,EDIT_USER ,SEARCH_USER} from "./ActionType"
 
 const initialstate = {
     loading: true,
@@ -81,6 +82,20 @@ export const Reducer = (state = initialstate, action) => {
                 return{
                     ...state,
                     loading :false
+                }
+
+            case EDIT_USER:
+                return{
+                    ...state,
+                    loading:false,
+                    
+                }
+
+            case SEARCH_USER:
+                return{
+                    ...state,
+                    loading:false,
+                    userObj:action.payload
                 }
 
 

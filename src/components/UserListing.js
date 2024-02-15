@@ -2,14 +2,19 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import { connect } from 'react-redux';
-import { fetchUserList, removeUser, selectItem, unSelectedItems ,hideUserModal,showUserModal} from "../redux/Action"
+import { fetchUserList, removeUser, selectItem, unSelectedItems, hideUserModal, showUserModal } from "../redux/Action"
 import UserSpinner from './Spinner';
 import CustomPagination from './Pagination';
 import "./Pagination/pagination.css"
-import Button  from 'react-bootstrap/Button';
+import Button from 'react-bootstrap/Button';
+import { toast } from 'react-toastify';
+
 import Modal from 'react-bootstrap/Modal'
 import DeleteButton from "./DeleteButton"
 import AddUser from "./AddUser"
+import EditUser from './EditUser.js';
+import SearchBar from "./SearchBar";
+
 
 
 
@@ -18,12 +23,12 @@ function UserListing(props) {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0); // State to track the total number of pages
     const itemsPerPage = 10; // Number of items per page
-    
-    
-    
+
+
+
     useEffect(() => {
         props.loadUser()
-        
+
     }, [])
     useEffect(() => {
         if (props.user.userlist.length > 0) {
@@ -40,7 +45,7 @@ function UserListing(props) {
             props.selectItemm(id);
         }
     };
-   
+
 
 
 
@@ -56,31 +61,43 @@ function UserListing(props) {
     return (
         props.user.loading ? <UserSpinner /> :
             props.user.errMessage ? <div><h2>{props.user.errMessage}</h2></div> :
-               <>
-                    <div className="d-flex mb-3 ">
-                        <div className="mx-4">
-                        
-                        <Button variant="outline-success" onClick={props.showuserModal}>Add User</Button>
- {/* Add User modal */}
- <Modal show={props.user.isModalVisible} onHide={props.hideuserModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add User</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          
-          <AddUser />
-        </Modal.Body>
-        <Modal.Footer>
-        
-        </Modal.Footer>
-      </Modal>
+                <>
+                    <div className="container-fluid">
+                        <div className="row mb-3">
+                            <div className="col">
+                                <Button variant="outline-success" onClick={props.showuserModal}>Add User</Button>
+                                {/* Add User modal */}
+                                <Modal show={props.user.isModalVisible} onHide={props.hideuserModal}>
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>Add User</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <AddUser />
+                                    </Modal.Body>
+                                    <Modal.Footer></Modal.Footer>
+                                </Modal>
+                            </div>
 
+                            <div className="col">
+                                <Button variant="outline-info" onClick={() => {
+                                    if (props.user.selectedIds.length !== 1) {
+                                        toast.error("Please select only one user to edit");
+                                        return;
+                                    }
+                                    props.showuserModal();
+                                }}>Edit User</Button>
+                            </div>
 
+                            <div className="col">
+                                <DeleteButton />
+                            </div>
+
+                            <div className="col">
+                                <SearchBar />
+                            </div>
                         </div>
-                        <div  className="mx-4">  <DeleteButton/> </div>
-                        
-                        <div></div> 
                     </div>
+
                     <Table striped bordered hover variant="dark">
                         <thead>
                             <tr>
@@ -110,7 +127,7 @@ function UserListing(props) {
                                     <td>{item.phone}</td>
                                     <td>{item.gender}</td>
                                     <td>{item.Date_Of_Birth}</td>
-                                   
+
                                 </tr>
 
                             )
@@ -134,7 +151,7 @@ function UserListing(props) {
 
 
 
-               </>
+                </>
 
     );
 }
@@ -155,8 +172,8 @@ const mapDispatchToUser = (dispatch) => {
         removeuser: (ids) => dispatch(removeUser(ids)),
         selectItemm: (id) => dispatch(selectItem(id)),
         deselectItemm: (id) => dispatch(unSelectedItems(id)),
-        showuserModal:()=>dispatch(showUserModal()),
-        hideuserModal:()=>dispatch(hideUserModal())
+        showuserModal: () => dispatch(showUserModal()),
+        hideuserModal: () => dispatch(hideUserModal())
 
 
     }

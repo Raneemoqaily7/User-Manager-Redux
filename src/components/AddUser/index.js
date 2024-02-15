@@ -57,7 +57,7 @@ function AddUser(props) {
     <Form   onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="formUserName">
         <Form.Label>  User Name </Form.Label>
-        <Form.Control type="text" name="username" placeholder="Enter Username" onChange={handleChange} />
+        <Form.Control type="text" name="username" value={formData.username}   placeholder="Enter Username" onChange={handleChange} />
         <Form.Text className="text-muted">
           Enter a Uniqe User Name Please!
         </Form.Text>
