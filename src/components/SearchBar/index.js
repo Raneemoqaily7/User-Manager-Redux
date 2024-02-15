@@ -9,8 +9,8 @@ function SearchBar(props) {
     const handleSearchChange =(e)=>{
        
     }
-    const handleSearch = (searchQuery )=> {
-        console.log(searchQuery)
+    const handleSearch = (searchQuery)=> {
+        
 
     }
     return (
