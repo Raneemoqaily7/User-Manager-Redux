@@ -1,7 +1,7 @@
 import axios from "axios"
 import { MAKE_REQUEST, FAIL_REQUEST, GET_USER_LIST ,DELETE_USER ,DESELECT_ITEM,SELECTED_ITEMS 
     ,HIDE_USER_MODAL,SHOW_USER_MODAL ,ADD_USER ,EDIT_USER,SEARCH_USER} from "./ActionType"
-import { isPlain } from "@reduxjs/toolkit"
+
 
 export const makeRequest = () => {
     return {
@@ -71,10 +71,10 @@ export const editUser=(data)=>{
     }
 }
 
-export const seachUser=(username)=>{
+export const seachUser=(data)=>{
     return{
         type:SEARCH_USER,
-        payload:username
+        payload:data
     }
     
 }
@@ -147,12 +147,18 @@ export const updateUser =(data)=>{
     }
 }
 
-// user_list/<str:username>
+// user_list/<str:username>data
 export const getUserDetail=(username)=>{
     return(dispatch)=>{
         dispatch(makeRequest())
-        axios.get("http://127.0.0.1:8000/api/user_list"+username).then(res=>{
-            dispatch(seachUser(username))
+        
+    
+        
+        console.log(username,"data")
+            
+        axios.get("http://127.0.0.1:8000/api/user_list/"+username).then(res=>{
+            console.log(res.data,"resssss")
+            dispatch(seachUser(res.data))
 
         })
         .catch(err=>{dispatch(failRequest(err.message))})

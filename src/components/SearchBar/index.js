@@ -1,15 +1,21 @@
 import { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { useDispatch } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
+import {getUserDetail} from "../../redux/Action"
 
 function SearchBar(props) {
-    const [searchQuery,setSearchQuery] =useState()
-    // const dispatch=useDispatch()
+    const [searchQuery,setSearchQuery] =useState("")
+    const dispatch=useDispatch()
 
     const handleSearchChange =(e)=>{
+        setSearchQuery(e.target.value)
+        console.log(searchQuery,"searchquey1111")
        
     }
-    const handleSearch = (searchQuery)=> {
+    const handleSearch = ()=> {
+        console.log(searchQuery,"ssssseeeeerrrs")
+        dispatch(getUserDetail(searchQuery))
+
         
 
     }
@@ -35,4 +41,11 @@ function SearchBar(props) {
         </Container>
     );
 }
-export default SearchBar;
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+
+    }
+}
+export default connect(mapStateToProps) (SearchBar);
